@@ -1,0 +1,30 @@
+version: '3.7'
+name: 'mango'
+services:
+  postgres:
+    build:
+      dockerfile: ./postgres/Dockerfile
+      context: .
+    restart: always
+    container_name: mango-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: local_pguser
+      POSTGRES_DB: mango
+    volumes:
+      - pd_data:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+  redis:
+    image: redis:6.2.6-alpine
+    restart: always
+    container_name: mango-redis
+    environment:
+      REDIS_PASSWORD: mango_redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - 6379:6379
+volumes:
+  pd_data:
+  redis_data:
