@@ -51,7 +51,6 @@ async function bootstrap(): Promise<void> {
   });
   app.use(swStats.getMiddleware({ swaggerSpec: allSwaggerDocument }));
 
-  await app.startAllMicroservices();
   await app.listen(process.env.APP_PORT, process.env.APP_HOST);
 
   // eslint-disable-next-line no-console
