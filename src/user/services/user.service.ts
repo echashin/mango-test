@@ -52,17 +52,29 @@ export class UserService {
 
   async getList(): Promise<UserDto[]> {
     const data: UserEntity[] = await this.repository.find();
-    return data.map((entity: UserEntity) => this.mapEntityToDto(entity));
+    return data.map((entity: UserEntity) => this.mapEntityToDto2(entity));
+  }
+
+  private mapEntityToDto2(entity: UserEntity): UserDto {
+    const user: UserDto = new UserDto();
+    user.phone = entity.phone;
+    user.lastName = entity.lastName;
+    user.id = entity.id;
+    user.email = entity.email;
+    user.login = entity.login;
+    user.firstName = entity.firstName;
+
+    return user;
   }
 
   private mapEntityToDto(entity: UserEntity): UserDto {
     return {
-      email: entity.email,
-      id: entity.id,
-      firstName: entity.firstName,
-      lastName: entity.lastName,
-      login: entity.lastName,
       phone: entity.phone,
+      lastName: entity.lastName,
+      id: entity.id,
+      email: entity.email,
+      login: entity.login,
+      firstName: entity.firstName,
     };
   }
 }
