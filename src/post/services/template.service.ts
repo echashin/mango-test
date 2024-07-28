@@ -8,7 +8,7 @@ export class TemplateService {
   private instance: Browser;
 
   async render(): Promise<void> {
-    const pdfString: string = fs.readFileSync(join(__dirname, '../templates/old.html')).toString('utf8');
+    const pdfString: string = fs.readFileSync(join(__dirname, '../templates/clean-svg.html')).toString('utf8');
 
     const browser: Browser = await this.getInstance();
     const browserPage: Page = await browser.newPage();
