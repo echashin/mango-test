@@ -6,6 +6,7 @@ import winston from 'winston';
 
 import { AppController } from './app.controller';
 import { EnvConfigInput } from './env-config.input';
+import { PostModule } from './post/post.module';
 import { envValidate } from './shared/helpers/env-validate';
 import { UniqueRule } from './shared/validators/classes/unique-rule';
 import { UserModule } from './user/user.module';
@@ -51,6 +52,7 @@ const envFilePath: string = `.env`;
       }),
     }),
     UserModule,
+    PostModule,
   ],
 
   controllers: [AppController],

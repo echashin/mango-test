@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { OpenAPIObject } from '@nestjs/swagger/dist/interfaces';
 
+import { PostModule } from './post/post.module';
 import { InputError } from './shared/models/input-error';
 import { UserModule } from './user/user.module';
 
@@ -16,7 +17,7 @@ export function swaggerDocs(app: INestApplication): Record<string, OpenAPIObject
 
   const adminSwaggerDocument: OpenAPIObject = SwaggerModule.createDocument(app, adminSwaggerOptions, {
     extraModels: [InputError],
-    include: [UserModule],
+    include: [UserModule, PostModule],
   });
 
   return {
